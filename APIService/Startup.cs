@@ -29,6 +29,9 @@ namespace APIService
         {
             services.AddScoped<IdataService, DataService>();
             services.AddControllers();
+            services.AddCors(c => {
+                c.AddPolicy("Allowlocal", options => options.AllowAnyOrigin());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +47,10 @@ namespace APIService
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors(x => x
+                  .AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

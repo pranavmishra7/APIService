@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace APIService.Controllers
 {
+
     [ApiController]
     [Route("[controller]")]
     public class DataController : ControllerBase
